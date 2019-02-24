@@ -1,0 +1,19 @@
+<h1> <%= @assignment.title %> </h1>
+<p> <%= @assignment.assignment %> </p>
+<% if @user.role == "admin" %>
+  <%= link_to 'Edit Assignment', edit_assignment_path(@assignment)%>
+  <%= link_to 'Delete Assignment', assignment_path(@assignment), method: :delete, data: {confirm: 'Are you sure you wanna delete this school?'}%>
+  <%if @studentworks %>
+    <% @studentworks.each do |work| %>
+      <% worker = User.where(id: work.user_id).take %>
+      <p><%= link_to "#{worker.username}'s work", assignment_studentwork_path(@assignment.id, work.id) %></p>
+    <%end%>
+  <%end%>
+<% end %>
+<% if @user.role == "student" %>
+  <% if @work %>
+  <p><%= link_to "your work", assignment_studentwork_path(@assignment.id, @work.id) %></p>
+<%else%>
+    <p><%= link_to "your work", new_assignment_studentwork_path(@assignment.id) %></p>
+    <%end%>
+<%end%>

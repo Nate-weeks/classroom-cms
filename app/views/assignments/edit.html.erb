@@ -1,0 +1,17 @@
+<%= form_for @assignment do |s| %>
+
+  <div class="field">
+    <%= s.label :title %>
+    <%= s.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= s.label :assignment %>
+    <%= s.text_area :assignment %>
+  </div>
+
+  <div class="actions">
+    <%= s.button "Edit Assignment", class: "button small" %>
+  </div>
+
+<%end%>

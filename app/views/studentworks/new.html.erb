@@ -1,0 +1,17 @@
+<h1> Add some work! <h1>
+  <% if @form_errors %>
+    <% @form_errors.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  <% end %>
+<div class="new-assignment">
+  <%= form_for [@assignment, @studentwork] do |a| %>
+    <div class="field">
+      <%= a.label :work %>
+      <%= a.text_area :work %>
+    </div>
+    <div class="actions">
+      <%= a.button "add Work", class: "button small" %>
+    </div>
+  <% end %>
+</div>

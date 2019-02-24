@@ -1,0 +1,18 @@
+<h1> Add a New Assignment! <h1>
+<div class="new-assignment">
+  <%= form_for @assignment do |a| %>
+
+    <div class="field">
+      <%= a.label :title %>
+      <%= a.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= a.label :assignment %>
+      <%= a.text_area :assignment %>
+    </div>
+    <div class="actions">
+      <%= a.button "add Assignment", class: "button small" %>
+    </div>
+  <% end %>
+</div>
