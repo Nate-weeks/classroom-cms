@@ -11,8 +11,12 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     @user = current_user
     if Studentwork.all != []
-      @studentworks = Studentwork.where(assignment_id: @assignment.id)
-      @work = @studentworks.where(user_id: @user.id).take
+      if @user.role == "admin"
+        @studentworks = Studentwork.where(assignment_id: @assignment.id)
+      end
+      if @user.role == "student"
+        @work = Studentwork.where(user_id: @user.id).take
+      end
     end
   end
 
@@ -34,7 +38,7 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-    @assignment = Assignment.new(assignment_params)
+    @assignment = Assignment.find(params[:id])
     @user = current_user
 
     if @assignment.update(assignment_params)

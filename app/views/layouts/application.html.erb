@@ -10,6 +10,23 @@
   </head>
 
   <body>
+    <div class="titlebar">
+
+    <nav>
+      <%= link_to "view assignments", assignments_path %>
+      <div class = "login">
+      <% if current_user.blank? %>
+        <a>Please Sign In</a>
+        <%= link_to 'Sign In with Github', '/auth/github' %>
+      <% else %>
+          <a class="name">
+            Welcome <%= current_user.username %>
+          </a>
+          <%= link_to "Sign Out", signout_path, method: :delete %>
+        <% end %>
+        </div>
+      </nav>
+      </div>
     <%= yield %>
   </body>
 </html>

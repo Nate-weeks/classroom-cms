@@ -1,5 +1,5 @@
 <h1> <%= @assignment.title %> </h1>
-<p> <%= @assignment.assignment %> </p>
+<%= markdown(@assignment.assignment) %>
 <% if @user.role == "admin" %>
   <%= link_to 'Edit Assignment', edit_assignment_path(@assignment)%>
   <%= link_to 'Delete Assignment', assignment_path(@assignment), method: :delete, data: {confirm: 'Are you sure you wanna delete this school?'}%>
