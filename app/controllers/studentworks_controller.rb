@@ -1,4 +1,8 @@
+# studentworks_controller.rb - controller for handling CRUD actions for studentworks
+# all studentworks are nested inside in an assignment
+
 class StudentworksController < ApplicationController
+  # form for new studentwork
   def new
     @studentwork = Studentwork.new
     @assignment = Assignment.find(params[:assignment_id])
@@ -9,7 +13,7 @@ class StudentworksController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @user = current_user
   end
-
+# handles submission of the new form
   def create
     @studentwork = Studentwork.new(studentWork_params)
     @user = current_user
@@ -28,13 +32,14 @@ class StudentworksController < ApplicationController
     end
   end
 
+# populates the edit form
   def edit
     @studentwork = Studentwork.find(params[:id])
     @assignment = Assignment.find(params[:assignment_id])
   end
-
+# handles for submission of the edit form
   def update
-    @studentwork = Studentwork.new(studentWork_params)
+    @studentwork = Studentwork.find(params[:id])
     @user = current_user
     @assignment = Assignment.find(params[:assignment_id])
 
@@ -55,6 +60,7 @@ class StudentworksController < ApplicationController
     redirect_to studentWorks_path
   end
 
+  # method for handling params passed from forms for CRUD actions
   def studentWork_params
     params.require(:studentwork).permit(:assignment, :work)
   end

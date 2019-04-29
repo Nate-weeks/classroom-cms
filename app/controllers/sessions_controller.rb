@@ -1,3 +1,5 @@
+# sessions.rb - controller for handling sessions and user account generation
+
 class SessionsController < ApplicationController
   def new
   end

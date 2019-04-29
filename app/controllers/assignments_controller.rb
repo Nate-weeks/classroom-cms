@@ -1,3 +1,6 @@
+# assignments_controller.rb - controller for assignments - includes methods for
+# CRUD actions for assignments - hooks into the assignments model and assignments routes
+
 class AssignmentsController < ApplicationController
   def index
     @assignments = Assignment.all
